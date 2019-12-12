@@ -15,3 +15,7 @@ with open('mulcam.txt', 'r') as f:
         print(line)
     print(lines)
 f.close
+
+
+
+

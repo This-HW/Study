@@ -7,6 +7,6 @@ f.close()
 
 f = open("test2.txt", "w")
 for i in sort :
-    # re.sub(pattern="\n", repl='', string=sort)
+   # re.sub(pattern="\n", repl='', string=sort)
     f.writelines(i)
 f.close()
