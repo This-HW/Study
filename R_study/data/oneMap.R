@@ -16,7 +16,7 @@ library(dplyr)
 library(ggmap)
 
 
-DONG<-read.csv('data/one.csv')
+DONG<-read.csv('one.csv')
 data(korpopmap3)
 Encoding(names(korpopmap3))<-'UTF-8'
 Encoding(korpopmap3@data$name_eng)<-'UTF-8'
@@ -69,6 +69,6 @@ map7<-leaflet(korpopmap3) %>%
              title = '인구수',
              opacity = 1)
 map7	
-saveWidget(map7, file="oneMap.html")
+# saveWidget(map7, file="oneMap.html")
 
 
