@@ -1,11 +1,13 @@
 import codecs
 from bs4 import BeautifulSoup
-import urllib.request
+import requests
 from konlpy.tag import Twitter
 import os, re, json, random
+
 dict_file = "cgi-bin/chatbot-data.json"
 dic = {}
 twitter = Twitter()
+
 # 딕셔너리에 단어 등록하기 --- (※1)
 def register_dic(words):
     global dic
@@ -23,6 +25,7 @@ def register_dic(words):
             continue
     # 딕셔너리가 변경될 때마다 저장하기
     json.dump(dic, open(dict_file,"w", encoding="utf-8"))
+
 # 딕셔너리에 글 등록하기
 def set_word3(dic, s3):
     w1, w2, w3 = s3
@@ -30,6 +33,7 @@ def set_word3(dic, s3):
     if not w2 in dic[w1]: dic[w1][w2] = {}
     if not w3 in dic[w1][w2]: dic[w1][w2][w3] = 0
     dic[w1][w2][w3] += 1
+
 # 문장 만들기 --- (※2)
 def make_sentence(head):
     if not head in dic: return ""
@@ -49,23 +53,22 @@ def make_sentence(head):
         if w3 == "." or w3 == "？ " or w3 == "": break
         w1, w2 = w2, w3
     ret = "".join(ret)
-    # 띄어쓰기
-    params = urllib.parse.urlencode({
-        "_callback": "",
-        "q": ret
-    })
-    # 네이버 맞춤법 검사기를 사용합니다.
-    #data = urllib.request.urlopen("https://m.search.naver.com/p/csearch/dcontent/spellchecker.nhn?" + params)
-    #data = data.read().decode("utf-8")[1:-2]
-    #data = json.loads(data)
-    #data = data["message"]["result"]["html"]
-    #data = soup = BeautifulSoup(data, "html.parser").getText()
-    # 리턴
+    ret = spell(ret)
     return ret
+
+# 띄어쓰기 + 맞춤법
+def spell(s):
+    data = {}
+    data["sentence"] = s.encode("utf-8")
+    r = requests.post("https://alldic.daum.net/grammar_checker.do", data=data)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    a = soup.select_one('#resultForm > div.cont_grammar > div > a').attrs['data-error-output']
+    return (a)
 
 def word_choice(sel):
     keys = sel.keys()
     return random.choice(list(keys))
+
 # 챗봇 응답 만들기 --- (※3)
 def make_reply(text):
     # 단어 학습시키기

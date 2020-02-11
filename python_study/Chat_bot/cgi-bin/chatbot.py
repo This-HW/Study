@@ -48,6 +48,11 @@ def show_form():
               height: 1;
               align-items: stretch;
             }
+
+            #chat{
+              display: flex;
+              flex-direction: column;  
+            }
             .chat-container{
               display: flex;
               width: 100%;
@@ -56,10 +61,6 @@ def show_form():
               max-width: 600px;
               flex-direction: column;
               background-color:lightgray;
-            }
-            #chat{
-              display: flex;
-              flex-direction: column;  
             }
             .usr { 
               text-align: right; 
@@ -138,6 +139,7 @@ def show_form():
                 "<div class='bot'> <div class='icon'> <img src='https://postfiles.pstatic.net/MjAyMDAyMDlfNDMg/MDAxNTgxMjA0ODIyMjQz.xWlq03vSHLQgGQCtEuP4AneKmsFPPtJj03v4I2-GKUUg.lPmpeU5Y00fV9JUFwZBlKqtXBJmEsayoKBw3SZ2DZ4kg.PNG.didix/chatbot_icon.png?type=w580'> </div> <div class='talk'> <div style='padding-bottom: 0px;'>chat_bot</div> <span>" + esc(res) + "</span></div></div>";
                 $('#chat').html($('#chat').html()+html);
                 $('#txt').val('').focus();
+                document.body.scrollTop = document.body.scrollHeight;
               });
           }
           function esc(s) {

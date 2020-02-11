@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+        $( function() {
+          $( "#txt_id" ).datepicker({
+              dateFormat: "yy년 mm월 dd일",
+              numberOfMonths:[2,3]
+          });
+        } );
+        </script>
+        <script>
+            //선언적 함수
+            // function display(name, city){
+            //     for (arg in arguments){
+            //         document.write("<h1>arg:" + (arg+1) + arguments[arg])
+            //     }
+            // }
+            
+            var j =10
+            var k = 'hello'
+            var show = function(){
+                window.alert('show function ');
+            };
+
+            var show2 = function(name){
+                window.alert('show fucntion222222222');
+            };
+
+            function display(args){
+                args();
+            }
+
+            //호출부
+            // display("홍길동", "서울시");
+            display(show2);
+        </script>
+    </head>
+    <body>
+        <input type="text" id="txt_id"></input>
+    </body>
+</html>
