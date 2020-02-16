@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 
+xml 은 extesion markup language를 뜻한다.
+스타일이 제외된 완벽하게 포맷만 표현하는 언어이며
+완벽한 트리구조를 형성한다.
+하나의 루트노드 안에 모든 요소가 포함된다. -->
+
+
+<students>
+
+    <student>
+        <name>홍길동</name>
+        <age>20</age>
+    </student>
+    <student>
+        <name>김길동</name>
+        <age>21</age>
+    </student>
+
+</students>
