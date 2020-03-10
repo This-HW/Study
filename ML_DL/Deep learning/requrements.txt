@@ -1,0 +1,4 @@
+# venv = py36
+python == 3.6.10
+tensorflow ==1.6.0
+keras == 2.2.2
