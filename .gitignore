@@ -2,3 +2,6 @@ private.py
 __pycache__/
 
 **/private/*
+**/data/*
+**/datasets/*
+
